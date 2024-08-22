@@ -1,0 +1,35 @@
+server:
+   port: 8081
+   servlet:
+    context-path: /manager-api
+spring:
+  application:
+    name: manager-api
+  datasource:
+    url: jdbc:h2:mem:testdb
+    driverClassName: org.h2.Driver
+    username: sa
+    password: ''
+  jpa:
+    database-platform: org.hibernate.dialect.H2Dialect
+    defer-datasource-initialization: false
+    show-sql: true
+    hibernate:
+      ddl-auto: none
+  h2:
+    console:
+      enabled: true
+      path: /h2-console
+      settings:
+        trace: false
+        web-allow-others: false
+  liquibase:
+    change-log: classpath:db.changelog/db.changelog-master.yaml
+manager:
+  api:
+    validation:
+      email:
+        regex: ^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+$
+mitocode:
+  security:
+   key.mitocode: 9b2af5eb23412302211ad7c71cdc49332f5acac408d9cceccdc9b2a7d3ceebf7184be0c46486567d673730fe59a10a48d21f6f5c01baea14b811f2bd3994efe301bc186615ed0c1e3222bb57bb2cb36d72c80e6a62eaf6a01993c783fce6cc5a

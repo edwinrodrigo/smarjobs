@@ -1,0 +1,94 @@
+databaseChangeLog:
+  - changeSet:
+      id: table_users_v1
+      author: eamaguaya89@gmail.com
+      changes:
+        - createTable:
+            tableName: users
+            columns:
+              - column:
+                  name: id
+                  type: UUID
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: name
+                  type: VARCHAR(200)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: email
+                  type: VARCHAR(100)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: password
+                  type: VARCHAR(100)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: created
+                  type: DATE
+                  constraints:
+                    nullable: false
+              - column:
+                  name: modified
+                  type: DATE
+                  constraints:
+                    nullable: false
+              - column:
+                  name: last_login
+                  type: DATE
+              - column:
+                  name: isactive
+                  type: BOOLEAN
+                  constraints:
+                    nullable: false
+              - column:
+                  name: token
+                  type: VARCHAR(255)
+                  constraints:
+                    nullable: false
+
+
+  - changeSet:
+      id: table_phone_v1
+      author: eamaguaya89@gmail.com
+      changes:
+        - createTable:
+            tableName: phones
+            columns:
+              - column:
+                  name: id
+                  type: BIGINT
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: number
+                  type: VARCHAR(50)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: citycode
+                  type: VARCHAR(10)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: contrycode
+                  type: VARCHAR(10)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: user_id
+                  type: UUID
+                  constraints:
+                     nullable: false
+        - addForeignKeyConstraint:
+            baseTableName: phones
+            baseColumnNames: user_id
+            constraintName: fk_user_status
+            referencedTableName: users
+            referencedColumnNames: id
